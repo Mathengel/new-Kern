@@ -1,0 +1,42 @@
+<div class="indexHeader col-md-3">
+  <a href="/#/"><h1>Lewis Engel</h1></a>
+  <div class="worksBox">
+    <a href="#/add"><span class="colorSix">Add</span></a>
+    <a href="/logout"><span class="colorSix">Log Out</span></a>
+  </div>
+</div>
+
+<div class="col-md-9">
+<br>
+<br>
+<br>
+<br>
+    <table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>AWS Localtion</th>
+      <th>Date Created</th>
+      <th>Phrase</th>
+      <th>Keywords</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="text in texts">
+      <td><img ng-src = "{{text.small}}"></td>
+      <td>{{text.title}}</td>
+      <td>{{text.small}} <br> / <br> {{text.large}}</td>
+      <td>{{text.date_created}}</td>
+      <td>{{text.prhase}}</td>
+      <td>{{text.keywords}}</td>
+      <td><a ng-href="#/edit/{{text._id}}"><span class="colorSix">Edit</span></a><button ng-click="delete(text)"  class="colorThree">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+</div>
+<!-- might continue to add more inputs to match needs for other types of work.
+    This form will be used to add any type of work, but initially only the text model will be created.  -->

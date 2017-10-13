@@ -1,0 +1,26 @@
+<div class="indexHeader col-md-3">
+  <a href="/#/"><h1>Lewis Engel</h1></a>
+  <div class="worksBox">
+    <a href="/logout"><span class="colorSix">Log Out</span></a>
+  </div>
+</div>
+
+<div class="col-md-9">
+
+    <h1>Login</h1>
+
+    <form ng-submit="login(admin)">
+        <input type="text" ng-model="admin.adminName" placeholder="Admin Name">
+        <input type="text" ng-model="admin.password" placeholder="Password">
+        <input class="btn btn-sm btn-primary" type="submit" value="Login">
+    </form>
+
+    <h1>Register</h1>
+    <p>This won't be around for very long!</p>
+
+    <form ng-submit="register(newAdmin)">
+        <input type="text" ng-model="newAdmin.adminName" placeholder="Admin Name">
+        <input type="text" ng-model="newAdmin.password" placeholder="Password">
+        <input class="btn btn-sm btn-success" type="submit" value="Register">
+    </form>
+  </div>

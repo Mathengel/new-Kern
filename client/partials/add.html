@@ -1,0 +1,72 @@
+<div class="indexHeader col-md-3">
+  <a href="/#/"><h1>Lewis Engel</h1></a>
+  <div class="worksBox">
+    <a href="#/list"><span class="colorSix">List</span></a>
+    <a href="/logout"><span class="colorSix">Log Out</span></a>
+  </div>
+</div>
+
+<div class="col-md-9">
+
+  <h3>Add a new Work</h3>
+
+  <form class="form" ng-submit="create(newWork)">
+      <div class="form-group">
+          <label> Title:
+              <input class="form-control" type="text" ng-model="newWork.title">
+          </label>
+      </div>
+      <div class="form-group">
+          <label>Type:
+              <select class="form-control" ng-model = "newWork.type">
+                <option>text</option>
+                <option>magnet</option>
+                <option>gauge</option>
+                <option>animation</option>
+              </select>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Image:
+              <input class="form-control" type="text" ng-model="newWork.image">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Date Created:
+              <input class="form-control" type="text" ng-model="newWork.date_created">
+          </label>
+      </div>
+      <!-- <div class="form-group">
+          <label> Image Detail:
+              <input class="form-control" type="text" ng-model="newWork.detail">
+          </label>
+      </div> -->
+      <div class="form-group">
+          <label> Phrase:
+              <textarea class="form-control" rows="5" ng-model="newWork.phrase" ></textarea>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Keywords:
+              <textarea class="form-control" rows="5" ng-model="newWork.keywords" ></textarea>
+          </label>
+      </div>
+      <!-- <div class="form-group">
+          <label> Colors:
+              <input class="form-control" type="text" ng-model="newWork.colors">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Shape:
+              <input class="form-control" type="text" ng-model="newWork.shapes">
+          </label>
+      </div> -->
+      <div class="form-group">
+          <input type="submit" value="Create" class="btn btn-primary">
+      </div>
+          <br>
+  </form>
+
+</div>
+<!-- might continue to add more inputs to match needs for other types of work.
+    This form will be used to add any type of work, but initially only the text model will be created.  -->
