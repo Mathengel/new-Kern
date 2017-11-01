@@ -1,9 +1,34 @@
-app.controller('textCtrl', ['$scope', 'textFctry', '$routeParams', textCtrl])
+/////////ARROW KEY SHORTCUTS
+app.directive('arrowNavigate',['$document',function($document){
+    return{
+        restrict:'A',
+        link:function(scope){
+            $document.bind('keyup',function(e){
+                    if(e.keyCode == 37){
+                        console.log(scope.currentSlideIndex);
+                        scope.currentSlideIndex = (scope.currentSlideIndex < scope.results.length - 1) ? ++scope.currentSlideIndex : 0;
+                        scope.$apply();
+                        e.preventDefault();
+                    }
+                    if(e.keyCode == 39){
+                        console.log(scope.currentSlideIndex);
+                        scope.currentSlideIndex = (scope.currentSlideIndex > 0) ? --scope.currentSlideIndex : scope.results.length - 1;
+                        scope.$apply();
+                        e.preventDefault();
+                    }
+            });
+        }
+    };
+}]);
 
-function textCtrl($scope, textFctry, $routeParams){
+
+app.controller('textCtrl', ['$scope', 'textFctry', '$routeParams', '$rootScope', '$anchorScroll', '$location', textCtrl])
+
+function textCtrl($scope, textFctry, $routeParams, $rootScope, $anchorScroll, $location){
     console.log('text controller loaded!!!!!!!!')
     console.log('edit controller as well loaded!!!!!!! serving work item#', $routeParams.id)
 
+    ////GRABBING THE RESOURCE FROM SERVER
     function getTexts(){
         console.log("getting texts...");
         textFctry.index (function (response){
@@ -14,6 +39,13 @@ function textCtrl($scope, textFctry, $routeParams){
     getTexts();
 
 
+
+    ////SCROLL TO
+    $scope.goToDiv = function(textName) {
+        console.log(textName);
+        $location.hash(textName)
+        $anchorScroll();
+    };
 
     ////DELETE METHOD FOR ADMIN SIDE LIST
     $scope.delete = function(text){
@@ -63,8 +95,6 @@ function textCtrl($scope, textFctry, $routeParams){
 
                 term = term.toLowerCase();
 
-
-
                 if( (new RegExp(term).test(text.title.toLowerCase())) ||
                     (new RegExp(term).test(text.keywords))
                 ){
@@ -108,6 +138,7 @@ function textCtrl($scope, textFctry, $routeParams){
     $scope.isCurrentSlideIndex = function (index) {
         return $scope.currentSlideIndex === index;
     };
+
     $scope.prevSlide = function (text) {
       $scope.single = text;
       console.log("prevSlide Pressed: ", text.title)
@@ -118,15 +149,4 @@ function textCtrl($scope, textFctry, $routeParams){
       console.log("Next Pressed: ", text.title)
         $scope.currentSlideIndex = ($scope.currentSlideIndex > 0) ? --$scope.currentSlideIndex : $scope.results.length - 1;
     };
-
-    // $scope.show = function()
-
-    // $scope.create = function(newText){
-    //     console.log('scope.create method fires!!!', newText)
-    //     textFctry.create(newText, function (response){
-    //         console.log("response from textFctry.create, but from controller call", response)
-    //     })
-    //     getTexts();
-    //     $scope.newText = {};
-    // }
 }
