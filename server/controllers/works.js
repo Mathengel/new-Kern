@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var TextWork = mongoose.model('TextWork');
 var AnimationWork = mongoose.model('AnimationWork');
 // var MagnetWork = mongoose.model('MagnetWork');
-// var GaugeWork = mongoose.model('GaugeWork');
+var GaugeWork = mongoose.model('GaugeWork');
 
 
 module.exports = {
@@ -81,12 +81,22 @@ module.exports = {
                   }
               })
         } else if (req.body.type == "gauge") {
-            GaugeWork.create(req.body, function(err, gaugeWork){
+            var newGaugeWork = new GaugeWork({
+                    title: req.body.title,
+                    date_created: req.body.date_created,
+                    small: "https://s3-us-west-2.amazonaws.com/lewisengelart.com/smallGauge/" + req.body.image + "Small.jpg",
+                    large: "https://s3-us-west-2.amazonaws.com/lewisengelart.com/largeGauge/" + req.body.image + "Large.jpg",
+                    detail: "https://s3-us-west-2.amazonaws.com/lewisengelart.com/detailGauge/" + req.body.image + "Detail.jpg",
+                    dimensions: req.body.dimensions,
+                    description: req.body.phrase,
+                    materials: req.body.keywords
+            })
+            newGaugeWork.save(req.body, function(err, gaugeWork){
                 if(err){
                     res.status(400).json(err);
                 }
-                //maybe change this to just give a status?
-                res.json(gaugeWork);
+                console.log("gaugeWork save success")
+                res.sendStatus(200)
             })
         }
 

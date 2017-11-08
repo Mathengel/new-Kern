@@ -2,7 +2,10 @@
   <a href="/#/"><h1>Lewis Engel</h1></a>
   <div class="worksBox">
     <a href="#/add"><span class="colorSix">Add</span></a>
+    <a href="#/gaugelist"><span class="colorSix">Gauge List</span></a>
     <a href="/logout"><span class="colorSix">Log Out</span></a>
+    <br>
+    <br>
   </div>
 </div>
 
@@ -27,11 +30,11 @@
     <tr ng-repeat="text in texts">
       <td><img ng-src = "{{text.small}}"></td>
       <td>{{text.title}}</td>
-      <td>{{text.small}} <br> / <br> {{text.large}}</td>
+      <td>{{text.small}} <br> / <br> {{text.large}}  <br> / <br> {{text.detail}}</td>
       <td>{{text.date_created}}</td>
       <td>{{text.prhase}}</td>
       <td>{{text.keywords}}</td>
-      <td><a ng-href="#/edit/{{text._id}}"><span class="colorSix">Edit</span></a><button ng-click="delete(text)"  class="colorThree">Delete</button></td>
+      <td><a ng-href="#/edittext/{{text._id}}"><span class="colorSix">Edit</span></a><button ng-click="delete(text)"  class="colorThree">Delete</button></td>
     </tr>
   </tbody>
 </table>

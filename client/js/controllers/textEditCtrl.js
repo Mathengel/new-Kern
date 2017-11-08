@@ -1,12 +1,12 @@
-app.controller('editCtrl', ['$scope', 'editFctry', '$routeParams', editCtrl])
+app.controller('textEditCtrl', ['$scope', 'editFctry', '$routeParams', textEditCtrl])
 
-function editCtrl($scope, editFctry, $routeParams){
-    console.log('edit controller as well loaded!!!!!!! serving work item#', $routeParams.id)
+function textEditCtrl($scope, editFctry, $routeParams){
+    console.log('text edit controller as well loaded!!!!!!! serving work item#', $routeParams.id)
 
     ///GET TEXT TO EDIT METHOD FOR ADMIN SIDE
     function getTextToEdit(){
         console.log("getting text to edit");
-        editFctry.show ($routeParams.id, function (response){
+        editFctry.showText ($routeParams.id, function (response){
             console.log("response from editFctry.show", response.data)
             $scope.textToEdit = response.data
         })
@@ -16,7 +16,7 @@ function editCtrl($scope, editFctry, $routeParams){
     ////UPDATE METHOD FOR ADMIN SIDE
     $scope.update = function(textToEdit){
         console.log('update method firing for Text', textToEdit)
-        editFctry.update(textToEdit, function(response){
+        editFctry.updateText(textToEdit, function(response){
             console.log("success", response)
         })
     }

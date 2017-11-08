@@ -5,14 +5,24 @@ function editFctry($http){
 
     return {
 
-        show: function(id, success){
+        showText: function(id, success){
             console.log("editFctry.show fired!!!")
             $http.get('/text/' + id).then(success);
         },
 
-        update: function(text, success){
+        updateText: function(text, success){
             console.log("editFctry.update fired!!")
             $http.put('/text/' + text._id, text).then(success);
+        },
+
+        showGauge: function(id, success){
+            console.log("editFctry.show fired!!!")
+            $http.get('/gauge/' + id).then(success);
+        },
+
+        updateGauge: function(gauge, success){
+            console.log("editFctry.update fired!!")
+            $http.put('/gauge/' + gauge._id, gauge).then(success);
         }
 
         // create: function(newText, success){

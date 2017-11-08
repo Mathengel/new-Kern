@@ -1,7 +1,8 @@
 <div class="indexHeader col-md-3">
   <a href="/#/"><h1>Lewis Engel</h1></a>
   <div class="worksBox">
-    <a href="#/list"><span class="colorSix">List</span></a>
+    <a href="#/gaugelist"><span class="colorSix">Gauge List</span></a>
+    <a href="#/textlist"><span class="colorSix">Text List</span></a>
     <a href="/logout"><span class="colorSix">Log Out</span></a>
   </div>
 </div>
@@ -36,18 +37,18 @@
               <input class="form-control" type="text" ng-model="newWork.date_created">
           </label>
       </div>
-      <!-- <div class="form-group">
-          <label> Image Detail:
-              <input class="form-control" type="text" ng-model="newWork.detail">
-          </label>
-      </div> -->
       <div class="form-group">
-          <label> Phrase:
+          <label> Dimensions:
+              <input class="form-control" type="text" ng-model="newWork.dimensions">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Phrase / Description:
               <textarea class="form-control" rows="5" ng-model="newWork.phrase" ></textarea>
           </label>
       </div>
       <div class="form-group">
-          <label> Keywords:
+          <label> Keywords / Materials:
               <textarea class="form-control" rows="5" ng-model="newWork.keywords" ></textarea>
           </label>
       </div>

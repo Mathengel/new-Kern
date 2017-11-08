@@ -1,0 +1,84 @@
+<div class="indexHeader col-md-3">
+  <a href="/#/"><h1>Lewis Engel</h1></a>
+  <div class="worksBox">
+    <a href="#/gaugelist"><span class="colorSix">Gauge List</span></a>
+    <a href="#/textlist"><span class="colorSix">Text List</span></a>
+    <a href="#/add"><span class="colorSix">Add</span></a>
+    <a href="/logout"><span class="colorSix">Log Out</span></a>
+  </div>
+</div>
+
+<div class="col-md-3">
+
+  <h3>Edit this Work</h3>
+
+
+  <form class="form" ng-submit="update(gaugeToEdit)">
+      <div class="form-group">
+          <label> Title:
+              <input class="form-control" type="text" ng-model="gaugeToEdit.title">
+          </label>
+      </div>
+      <div class="form-group">
+          <label>Type:
+              <select class="form-control" ng-model = "gaugeToEdit.type">
+                <option>text</option>
+                <option>magnet</option>
+                <option>gauge</option>
+                <option>animation</option>
+              </select>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Date Created:
+              <input class="form-control" type="text" ng-model="gaugeToEdit.date_created">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> AWS Location Small:
+              <textarea class="form-control" rows="4" ng-model="gaugeToEdit.small" ></textarea>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> AWS Location Large:
+              <textarea class="form-control" rows="4" ng-model="gaugeToEdit.large" ></textarea>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> AWS Location Detail:
+              <textarea class="form-control" rows="4" ng-model="gaugeToEdit.detail"></textarea>
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Dimentions:
+              <input class="form-control" type="text" ng-model="gaugeToEdit.dimentions">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Materials:
+              <input class="form-control" type="text" ng-model="gaugeToEdit.materials">
+          </label>
+      </div>
+      <!-- <div class="form-group">
+          <label> Colors:
+              <input class="form-control" type="text" ng-model="newWork.colors">
+          </label>
+      </div>
+      <div class="form-group">
+          <label> Shape:
+              <input class="form-control" type="text" ng-model="newWork.shapes">
+          </label>
+      </div> -->
+      <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-warning">
+      </div>
+          <br>
+  </form>
+
+</div>
+
+<div class="col-md-3">
+    <img ng-src="{{gaugeToEdit.small}}" alt="">
+</div>
+<!-- might continue to add more inputs to match needs for other types of textToEdit.
+    This form will be used to add any type of textToEdit, but initially only the text model will be created.  -->

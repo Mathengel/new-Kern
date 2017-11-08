@@ -14,7 +14,8 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
     });
     $routeProvider
         .when('/',{
-            templateUrl: 'partials/dashboard.html'
+            templateUrl: 'partials/dashboard.html',
+            controller: 'dashboardCrtl'
         })
         .when('/text',{
             templateUrl: 'partials/text.html',
@@ -26,7 +27,7 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
         })
         .when('/gauge',{
             templateUrl: 'partials/gauge.html',
-            // controller: 'gaugeCtrl'
+            controller: 'gaugeCtrl'
         })
         .when('/animation',{
             templateUrl: 'partials/animation.html',
@@ -48,13 +49,21 @@ app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpPro
             templateUrl: 'partials/add.html',
             controller: 'workCtrl'
         })
-        .when('/list',{
-            templateUrl: 'partials/list.html',
+        .when('/textlist',{
+            templateUrl: 'partials/textList.html',
             controller: 'textCtrl'
         })
-        .when('/edit/:id',{
-            templateUrl: 'partials/edit.html',
-            controller: 'editCtrl'
+        .when('/gaugelist',{
+            templateUrl: 'partials/gaugeList.html',
+            controller: 'gaugeCtrl'
+        })
+        .when('/editgauge/:id',{
+            templateUrl: 'partials/editGauge.html',
+            controller: 'gaugeEditCtrl'
+        })
+        .when('/edittext/:id',{
+            templateUrl: 'partials/editText.html',
+            controller: 'textEditCtrl'
         })
         .otherwise({
             redirectTo: '/'

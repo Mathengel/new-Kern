@@ -7,6 +7,7 @@ var TextSchema = new mongoose.Schema({
     date_created: String,
     small: String,
     large: String,
+    detail: String,
     phrase: String,
     keywords: String,
 

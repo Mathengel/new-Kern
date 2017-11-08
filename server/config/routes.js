@@ -1,5 +1,6 @@
 console.log("module routes loaded...")
 var texts = require('../controllers/texts.js')
+var gauges = require('../controllers/gauges.js')
 var animations = require('../controllers/animations.js')
 var works = require('../controllers/works.js')
 var admins = require('../controllers/admins.js')
@@ -20,7 +21,7 @@ module.exports = function(app){
     // app.get('/magnets', magnets.index)
 
     //to pull all gauge pieces from the database
-    // app.get('/gauges', gauges.index)
+    app.get('/gauges', gauges.index);
 
     //to pull all animation pieces from the database
     // app.get('/animations', animations.index)
@@ -37,6 +38,10 @@ module.exports = function(app){
     app.get('/text/:id', texts.show);
     app.put('/text/:id', texts.update);
     app.delete('/texts/:id', texts.delete);
+
+    app.get('/gauge/:id', gauges.show);
+    app.put('/gauge/:id', gauges.update);
+    app.delete('/gauges/:id', gauges.delete);
 
     //from admin to add new pieces of work
     app.post('/works', works.create);
