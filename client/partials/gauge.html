@@ -1,14 +1,14 @@
 <div class="indexHeader col-md-3">
-  <a href="/#/"><h1>Lewis Engel</h1></a>
+  <a href="/#/"><h1><span class="hidden-xs">Lewis Engel</span></h1></a>
 </div>
 
 <div class="worksBox hidden-xs col-sm-6 col-md-3">
   <a href="/#/about" class="menuItems"><span class="colorFive">About</span></a>
   <a href="/#/contact" class="menuItems"><span class="colorSix">Contact</span></a>
 
-  <a href="/#/text" class="menuItems"><span class="colorOne">Emergent Possibilities</span></a>
+  <!-- <a href="/#/text" class="menuItems"><span class="colorOne">Emergent Possibilities</span></a> -->
   <!-- <a href="/#/magnet" class="menuItems"><span class="colorTwo">Magnetic Attractions</span></a> -->
-  <a href="/#/gauge" class="menuItems"><span class="colorThree">Meaningless Measures</span></a>
+  <!-- <a href="/#/gauge" class="menuItems"><span class="colorThree">Meaningless Measures</span></a> -->
   <!-- <a href="/#/animation" class="menuItems"><span class="colorFour">Emergence over Time</span></a> -->
 </div>
 
@@ -19,35 +19,34 @@
 <div class="gridContainer col-sm-12 col-md-9">
 
   <!-- GRID -->
-  <div ng-hide = "singleChosen" class="gridBox">
+  <div ng-hide = "singleChosenGauge" class="gridBox">
       <div  class="nonDraggableImage smallGrid col-sm-4" ng-repeat="gauge in gauges">
-          <img id="{{gauge.title}}" class="smallGridImages" ng-src="{{gauge.small}}" alt="{{gauge.title}}" ng-mouseover="hoverIn(gauge)" ng-mouseleave = "hoverOut()" ng-click="one(gauge)">
+          <img id="{{gauge.title}}" class="smallGridImages" ng-src="{{gauge.small}}" alt="{{gauge.title}}" ng-mouseover="hoverIn(gauge)" ng-mouseleave = "hoverOut()" ng-click="startSliderAtIndex($index)">
       </div>
   </div>
 
   <!-- CAROSEL -->
-  <div id="Carousel" class = "col-sm-12 col-md-9" ng-show = "singleChosen">
+  <div id="Carousel" class = "col-sm-12 col-md-9" ng-show = "singleChosenGauge">
 
   <!-- Main CAROUSEL -->
-  <div ng-show="singleChosen" class="slider">
-      <div ng-show="!detail" arrow-navigate>
+    <div class="slider">
+      <div ng-show="!detail" arrow-navigate-gauge>
 
-        <div ng-repeat="gauge in gauges"  ng-hide="!isCurrentSlideIndex($index)">
-            <img  class = "nonDraggableImage slide " ng-src="{{gauge.large}}" alt="{{gauge.large}}">
+        <a class="arrow prev hidden-xs"  ng-click="prevSlideGauge()"></a>
+        <div ng-repeat="gauge in gauges"  ng-hide="!isCurrentSlideIndexGauge($index)">
+            <img  class = "nonDraggableImage slide " ng-src="{{gauge.large}}" alt="{{gauge.large}}" ng-click = "hideSlider()" ng-keyup="$event.keyCode === 39" ng-keyup="$event.keyCode === 37">
 
-            <div keypress-events></div>
-            <a class="arrow prev" href="#/gauge" ng-keyup="$event.keyCode === 37 && nextSlide(gauges[($index+1)%gauges.length])" ng-click="nextSlide(gauges[($index+1)%gauges.length])"></a>
-            <a class="arrow next" href="#/gauge" ng-click="prevSlide((gauges[(($index-1)<0?gauges.length-1:$index-1)]))"></a>
+            <!-- <div keypress-events></div>    href="#/gauge"   -->
+
 
         <!-- </div> -->
-            <div class="caroselDeets" ng-show = "singleChosen" ng-cloak >
+            <!-- <div class="caroselDeets" ng-cloak >
               <p><span>Title: </span>{{gauge.title}}</p>
-              <p><span>Phrase: </span>{{gauge.phrase}}</p>
-              <span class="attributes">
-              <p><span>Keywords: </span>{{gauge.keywords}}</p>
               </span>
-            </div>
+            </div> -->
         </div>
+        <a class="arrow next hidden-xs"   ng-click="nextSlideGauge()"></a>
+
       </div>
   </div>
 </div>

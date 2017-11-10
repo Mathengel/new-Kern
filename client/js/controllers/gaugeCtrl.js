@@ -1,18 +1,20 @@
 /////////ARROW KEY SHORTCUTS
-app.directive('arrowNavigate',['$document',function($document){
+app.directive('arrowNavigateGauge',['$document',function($document){
     return{
         restrict:'A',
         link:function(scope){
             $document.bind('keyup',function(e){
                     if(e.keyCode == 37){
-                        console.log(scope.currentSlideIndex);
-                        scope.currentSlideIndex = (scope.currentSlideIndex < scope.gauges.length - 1) ? ++scope.currentSlideIndex : 0;
+                        console.log(scope.currentSlideIndexGauge, "left");
+                        scope.currentSlideIndexGauge = (scope.currentSlideIndexGauge > 0) ? --scope.currentSlideIndexGauge : scope.gauges.length - 1;
+                        console.log("moved left?", scope.currentSlideIndexGauge)
                         scope.$apply();
                         e.preventDefault();
                     }
                     if(e.keyCode == 39){
-                        console.log(scope.currentSlideIndex);
-                        scope.currentSlideIndex = (scope.currentSlideIndex > 0) ? --scope.currentSlideIndex : scope.gauges.length - 1;
+                        console.log(scope.currentSlideIndexGauge, "right");
+                        scope.currentSlideIndexGauge = (scope.currentSlideIndexGauge < scope.gauges.length - 1) ? ++scope.currentSlideIndexGauge : 0;
+                        console.log("moved right?", scope.currentSlideIndexGauge)
                         scope.$apply();
                         e.preventDefault();
                     }
@@ -46,37 +48,46 @@ function gaugeCtrl($scope, gaugeFctry, $routeParams, $rootScope, $anchorScroll, 
         $anchorScroll();
     };
 
-    $scope.singleChosen = false;
+    $scope.singleChosenGauge = false;
 
     //SELECT One
-    $scope.one = function(gauge){
-      $scope.singleChosen = true;
-      $scope.single = gauge;
+    $scope.startSliderAtIndex = function(index){
+      $scope.singleChosenGauge = true;
+      $scope.currentSlideIndexGauge = index;
+    //   $scope.gaugeIndex = index
+    //   $scope.singleGauge = $scope.gauges[index];
+    //   console.log("chosen gauge", gauge.title, $scope.singleGauge, $scope.singleChosenGauge)
+    console.log("this is the index of the gauge were pressing?", index, "corresponding gauge is?", $scope.gauges[index])
     }
 
+    $scope.hideSlider = function(){
+        $scope.singleChosenGauge = false;
+        console.log("hiding slider")
+    }
     //IMAGE CAROUSEL
 
     //sets the current index to 0, the start
-    $scope.currentSlideIndex = 0;
+    // $scope.currentSlideIndexGauge = $scope.gaugeIndex;
 
     //allows us to change the index by passing this function a new index
-    $scope.setCurrentSlideIndex = function (index) {
-        $scope.currentSlideIndex = index;
+    $scope.setCurrentSlideIndexGauge = function (index) {
+        $scope.currentSlideIndexGauge = index;
     };
     //returns a boolean value as to whether the current index matches whatever we pass this function
-    $scope.isCurrentSlideIndex = function (index) {
-        return $scope.currentSlideIndex === index;
+    $scope.isCurrentSlideIndexGauge = function (index) {
+        return $scope.currentSlideIndexGauge === index;
     };
 
-    $scope.prevSlide = function (gauge) {
-      $scope.single = gauge;
-      console.log("prevSlide Pressed: ", gauge.title)
-        $scope.currentSlideIndex = ($scope.currentSlideIndex < $scope.gauges.length - 1) ? ++$scope.currentSlideIndex : 0;
+    $scope.prevSlideGauge = function () {
+        console.log($scope.currentSlideIndexGauge, "left");
+        $scope.currentSlideIndexGauge = ($scope.currentSlideIndexGauge > 0) ? --$scope.currentSlideIndexGauge : $scope.gauges.length - 1;
+        console.log("moved left?", $scope.currentSlideIndexGauge)
+
     };
-    $scope.nextSlide = function (gauge) {
-      $scope.single = gauge;
-      console.log("Next Pressed: ", gauge.title)
-        $scope.currentSlideIndex = ($scope.currentSlideIndex > 0) ? --$scope.currentSlideIndex : $scope.gauges.length - 1;
+    $scope.nextSlideGauge = function () {
+        console.log($scope.currentSlideIndexGauge, "right");
+        $scope.currentSlideIndexGauge = ($scope.currentSlideIndexGauge < $scope.gauges.length - 1) ? ++$scope.currentSlideIndexGauge : 0;
+        console.log("moved right?", $scope.currentSlideIndexGauge)
     };
 
 
